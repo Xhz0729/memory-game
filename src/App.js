@@ -4,12 +4,12 @@ import { Simulate } from "react-dom/test-utils";
 import SingleCard from "./components/SingleCard";
 
 const cardsImg = [
-  { src: "/img/helmet-1.png", matched: false },
-  { src: "/img/potion-1.png", matched: false },
-  { src: "/img/ring-1.png", matched: false },
-  { src: "/img/scroll-1.png", matched: false },
-  { src: "/img/shield-1.png", matched: false },
-  { src: "/img/sword-1.png", matched: false },
+  { src: "/img/dou.jpeg", matched: false },
+  { src: "/img/Romy.jpeg", matched: false },
+  { src: "/img/ding.jpg", matched: false },
+  { src: "/img/keke.jpeg", matched: false },
+  { src: "/img/fu.jpeg", matched: false },
+  { src: "/img/pag.jpg", matched: false },
 ];
 
 function App() {
@@ -24,6 +24,8 @@ function App() {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
     setCards(shufflecards);
+    setChoiceA(null);
+    setChoiceB(null);
     setTurns(0);
   };
 
@@ -61,6 +63,11 @@ function App() {
     setTurns((prevTurns) => prevTurns + 1);
   };
 
+  // start the game automatically
+  useEffect(() => {
+    shufflecards();
+  }, []);
+
   return (
     <div className="App">
       <h1>Magic Match</h1>
@@ -76,6 +83,7 @@ function App() {
           />
         ))}
       </div>
+      <p>Truns: {turns}</p>
     </div>
   );
 }
