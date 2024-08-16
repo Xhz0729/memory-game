@@ -1,18 +1,26 @@
 import { useState } from "react";
 import "./App.css";
-const cards = [{ src: "/img/helmet-1.png" }, { src: "/img/ring-1.png" }];
+const cardsImg = [
+  { src: "/img/helmet-1.png" },
+  { src: "/img/potion-1.png" },
+  { src: "/img/ring-1.png" },
+  { src: "/img/scroll-1.png" },
+  { src: "/img/shield-1.png" },
+  { src: "/img/sword-1.png" },
+];
 
 function App() {
   const [cards, setCards] = useState([]);
-
+  const [turns, setTurns] = useState(0);
+  // shuffle cards
   const shufflecards = () => {
-    const shufflecards = [...cards, ...cards]
+    // duplicate the cards
+    const shufflecards = [...cardsImg, ...cardsImg]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
-
     setCards(shufflecards);
+    setTurns(0);
   };
-  console.log(cards);
 
   return (
     <div className="App">
