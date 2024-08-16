@@ -48,8 +48,8 @@ function App() {
         });
         resetChoice();
       } else {
+        setTimeout(() => resetChoice(), 1000);
       }
-      resetChoice();
     }
   }, [choiceA, choiceB]);
   console.log(cards);
@@ -68,7 +68,12 @@ function App() {
 
       <div className="card-grid">
         {cards.map((card) => (
-          <SingleCard key={card.id} card={card} handleChoice={handleChoice} />
+          <SingleCard
+            key={card.id}
+            card={card}
+            handleChoice={handleChoice}
+            flipped={card === choiceA || card === choiceB || card.matched}
+          />
         ))}
       </div>
     </div>
