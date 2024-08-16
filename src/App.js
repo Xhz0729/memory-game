@@ -14,6 +14,8 @@ const cardsImg = [
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
+  const [choiceA, setChoiceA] = useState(null);
+  const [choiceB, setChoiceB] = useState(null);
   // shuffle cards
   const shufflecards = () => {
     // duplicate the cards
@@ -24,6 +26,11 @@ function App() {
     setTurns(0);
   };
 
+  // handle user's choice
+  const handleChoice = (card) => {
+    choiceA ? setChoiceB(card) : setChoiceA(card);
+  };
+
   return (
     <div className="App">
       <h1>Magic Match</h1>
@@ -31,7 +38,7 @@ function App() {
 
       <div className="card-grid">
         {cards.map((card) => (
-          <SingleCard key={card.id} card={card}/>
+          <SingleCard key={card.id} card={card} handleChoice={handleChoice} />
         ))}
       </div>
     </div>
