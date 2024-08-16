@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Simulate } from "react-dom/test-utils";
 import SingleCard from "./components/SingleCard";
 
 const cardsImg = [
   { src: "/img/dou.jpeg", matched: false },
   { src: "/img/Romy.jpeg", matched: false },
   { src: "/img/ding.jpg", matched: false },
-  { src: "/img/keke.jpeg", matched: false },
-  { src: "/img/fu.jpeg", matched: false },
+  { src: "/img/king.jpg", matched: false },
+  { src: "/img/fu.jpg", matched: false },
   { src: "/img/pag.jpg", matched: false },
 ];
 
