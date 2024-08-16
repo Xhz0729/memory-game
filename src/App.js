@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Simulate } from "react-dom/test-utils";
 import SingleCard from "./components/SingleCard";
+
 const cardsImg = [
-  { src: "/img/helmet-1.png" },
-  { src: "/img/potion-1.png" },
-  { src: "/img/ring-1.png" },
-  { src: "/img/scroll-1.png" },
-  { src: "/img/shield-1.png" },
-  { src: "/img/sword-1.png" },
+  { src: "/img/helmet-1.png", matched: false },
+  { src: "/img/potion-1.png", matched: false },
+  { src: "/img/ring-1.png", matched: false },
+  { src: "/img/scroll-1.png", matched: false },
+  { src: "/img/shield-1.png", matched: false },
+  { src: "/img/sword-1.png", matched: false },
 ];
 
 function App() {
@@ -29,6 +30,35 @@ function App() {
   // handle user's choice
   const handleChoice = (card) => {
     choiceA ? setChoiceB(card) : setChoiceA(card);
+  };
+
+  // make matches
+  useEffect(() => {
+    // whether two cards get values
+    if (choiceA && choiceB) {
+      if (choiceA.src === choiceB.src) {
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.src === choiceA.src) {
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          });
+        });
+        resetChoice();
+      } else {
+      }
+      resetChoice();
+    }
+  }, [choiceA, choiceB]);
+  console.log(cards);
+
+  // reset choices && increase turn
+  const resetChoice = () => {
+    setChoiceA(null);
+    setChoiceB(null);
+    setTurns((prevTurns) => prevTurns + 1);
   };
 
   return (
